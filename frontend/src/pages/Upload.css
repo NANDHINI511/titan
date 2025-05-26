@@ -1,0 +1,98 @@
+/* Upload.css */
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #f3f6fa;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Container takes full screen height and centers form */
+.fullscreen-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+  /* padding: 10px; */
+  margin-top: 150px;
+}
+
+/* Card styling */
+.upload6 {
+  width: 100%;
+  max-width: 500px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Inner padding */
+.upload5 {
+  /* padding: 50px; */
+}
+
+/* Form title */
+form h2 {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 700;
+  color: #007bff;
+  margin-bottom: 40px;
+}
+
+/* Form group styling */
+.upload0,
+.upload1,
+.upload3,
+.upload4 {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 6px;
+}
+
+/* Label styling */
+label {
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: #333;
+  font-size: 16px;
+}
+
+/* Input fields */
+input[type="text"],
+input[type="img"],
+input[type="numbers"] {
+  padding: 12px 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Submit button */
+.upload7 {
+  text-align: center;
+  margin-top: 30px;
+}
+
+button[type="submit"] {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 14px 48px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}

@@ -1,0 +1,60 @@
+/* Edit.css */
+.update6 {
+  margin: 50px auto;width: 50%;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+}
+.editclass{
+    margin-top: 100px;
+}
+.update5 {
+margin-top: 50px;
+  padding: 30px;
+}
+
+form h2 {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.update0,
+.update1,
+.update3,
+.update4 {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+label {
+  flex: 1;
+  font-weight: 600;
+}
+
+input {
+  flex: 2;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+input:focus {
+  border-color: #0d6efd;
+}
+
+.update9 {
+  text-align: center;
+  margin-top: 30px;
+}
+
+button[type="submit"] {
+  padding: 10px 20px;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}

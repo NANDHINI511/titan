@@ -1,0 +1,12 @@
+.icons-sect-men{
+    width: 100%;
+    background-color: beige;
+    padding: 20px 0;
+    text-align: center;
+  }
+  
+  .icons-sect-men i {
+    font-size: 2rem; 
+    color: #c8942d;
+    margin-bottom: 10px;
+    }

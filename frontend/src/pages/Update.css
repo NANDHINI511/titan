@@ -1,0 +1,71 @@
+.update-page {
+  padding: 130px 20px;
+  min-height: 100vh;
+  background-color: #f4f6f8;
+}
+
+.card.table2 {
+  width: 100%;
+  max-width: 95vw;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  overflow-x: auto;
+  margin-top: 130px;
+}
+
+.card-body {
+  width: 90%;
+  overflow-x: auto;
+}
+
+.table1 {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 1000px;
+}
+
+.table1 th, .table1 td {
+  padding: 16px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+.table1 th {
+  background-color: brown;
+  color: white;
+}
+
+.table1 img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.table3, .table1 button {
+  padding: 6px 12px;
+  margin: 4px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.table3 {
+  background-color: #dc3545;
+  color: white;
+}
+
+.table3:hover {
+  background-color: #a71d2a;
+}
+
+.table1 a button {
+  background-color: #17a2b8;
+  color: white;
+}
+
+.table1 a button:hover {
+  background-color: #117a8b;
+}

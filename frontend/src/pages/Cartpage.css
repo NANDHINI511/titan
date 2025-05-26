@@ -1,0 +1,22 @@
+.cartpg {
+    margin-top: 110px;
+    padding: 20px;
+  }
+.crd-img img{
+    width: 240px;
+    height: 270px;
+
+}
+.buttons{
+  background-color: black;
+  color: white;
+  border-radius: 1%;
+}
+/* .cartbutton{
+  color: white;
+  border-radius: 1%; 
+} */
+.card-text{
+  font-size: 12px;
+  line-height: -30px;
+}

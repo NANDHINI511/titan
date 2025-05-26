@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "bootstrap": "^5.3.5",
+    "boxicons": "^2.1.4",
+    "swiper": "^11.2.6"
+  }
+}

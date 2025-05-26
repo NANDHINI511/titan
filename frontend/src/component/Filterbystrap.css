@@ -1,0 +1,46 @@
+.Filterbtns a{
+    text-decoration: none;
+    color: black;
+    background-color: white;
+    margin-left: 10px;
+  }
+  
+  .Filterbtns {
+    display: flex;
+    overflow-x: auto;
+    /* -ms-overflow-style: auto;  */
+    gap: 1rem;
+    padding: 0.5rem 1rem;
+    white-space: nowrap;
+    scrollbar-width:thick;
+  }
+  .filterstrapbtns{
+    height: 25vh;
+    background-color: #e9f2fd;
+  
+  }
+  .Filterbtns::-webkit-scrollbar {
+    height: 2px;
+    background-color: beige;
+  }
+  
+  .Filterbtns::-webkit-scrollbar-thumb {
+    background-color:orange;
+    border-radius: 10px;
+  }
+  
+  .Filter-button {
+    flex-shrink: 0;
+    padding: 8px 16px;
+    border-color: #ddd;
+    border-radius: 20px;
+    background-color: #f2f2f2;
+    text-decoration: none;
+    border: 1px solid #ccc;
+    transition: background 0.3s ease;
+  }
+  
+  .Filter-button:hover {
+    background-color: beige;
+    border-color: orange;
+  }

@@ -1,0 +1,76 @@
+
+.mytoprow{
+    margin-top: 100px;
+  }
+  .sideheader{
+    font-size: 12px;
+    color: gray;
+  }
+  .mysidebar{
+    /* border: 2px solid black; */
+    position: sticky;
+  }
+  /* -----accordion----- */
+  .accordion-item{
+    font-size: 13px;
+    color: gray;
+    margin-left: 15px;
+    border-bottom: 1px solid gainsboro;
+  
+  }
+  .form-control{
+    width: 70px;
+    height: 20px;
+  }
+  .accordion-button.collapsed::after {
+    content: "+";
+    font-size: 20px;
+    margin-right: 10px;
+  }
+  
+  .accordion-button::after {
+    content: "-";
+    font-size: 20px;
+    margin-right: 10px;
+  }
+  
+  .see-more {
+    cursor: pointer;
+    color: gray;
+    text-decoration: underline;
+    margin-top: 5px;
+    display: inline-block;
+    text-decoration: none;
+  }
+  
+  .extra-materials {
+    display: none;
+  }
+  
+  /* ------end of my accordion------ */
+  .dropdown-sort{
+     
+    border: 1px solid gray;
+    margin-top: 20px;
+    width: 170px;
+    margin-left: 10px;
+    outline: none; 
+  }
+  .drpbtn{
+    font-size: 13px;
+    border: none;
+    outline: none;
+  }
+  .dropdown-sort:hover{
+      border: 1px solid orange;
+  }
+  .filtrheader{
+    font-size: 12px;
+  }
+  .clrbtn{
+    background: transparent ;
+    outline: none;
+    border: none;
+    margin-left: 30px;
+    font-size: 12px;
+  }

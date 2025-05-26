@@ -1,0 +1,63 @@
+.w-cards{
+  width: 14rem;
+  font-size: 13px;
+  position: relative;
+}
+.w-cards:hover{
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05), 
+  0 2px 4px rgba(0, 0, 0, 0.08), 
+  0 8px 16px rgba(0, 0, 0, 0.06);
+  transform: scale(1.1); 
+}
+.cardpara{
+  color: gray;
+}
+.reviews{
+  font-size: 13px;padding-left: 5px;
+  border: 1px solid gray;width: 40px;
+  border-radius: 18px;
+}
+.reviews i{
+  font-size: 12px;padding-left: 2px;
+  color: gold;
+}
+.w-card-img{
+  object-fit: contain;
+
+}
+.badge {
+  /* border-top-left-radius: 8px; */
+  border-bottom-left-radius: 10px;
+}
+.wishlist{
+  color: gray;
+  cursor: pointer;
+  background-color: white;
+  border-radius: 50%;
+  border: 1px solid white;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05), 
+            0 2px 4px rgba(0, 0, 0, 0.08), 
+            0 8px 16px rgba(0, 0, 0, 0.06);
+  padding: 4px;
+}
+.ucldbintrstd{
+  background-color: #e9f2fd;
+
+}
+.zooming:hover{
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05), 
+  0 2px 4px rgba(0, 0, 0, 0.08), 
+  0 8px 16px rgba(0, 0, 0, 0.06);
+  transform: scale(1.1); 
+}
+.w-recommend{
+  width: 100%;
+  background-color: #e9f2fd;
+}
+.w-paragraph{
+  font-size: 14px;
+}
+.cartbutton{
+  /* border: 3px solid red; */
+  width: 100%;
+}
