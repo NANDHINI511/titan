@@ -49,7 +49,7 @@ const toggleWishlist = (item, e) => {
     <>
           {/* ----my sidebar---- */}
     <section>
-      <div className="container-fluid">
+      <div className="container-fluid main-content1 ">
         <div className="row w-100  mytoprow ">
 
                     <Accordion/>

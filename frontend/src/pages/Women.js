@@ -52,7 +52,7 @@ const toggleWishlist = (item, e) => {
    
    <>
 <section>
-  <div class="container-fluid">
+  <div class="container-fluid main-content">
     <div class="row womentoprow">
     <Accordion/>
     <div class="col-lg-10">
@@ -160,7 +160,7 @@ const toggleWishlist = (item, e) => {
 
 
 <section>
-  vgvn
+ 
                 <div class="row ">
                       <h6 className="mt-4"></h6>
                       {womencarosarr.map((item) => (
@@ -173,17 +173,7 @@ const toggleWishlist = (item, e) => {
                                 {item.images.map((img, imgIndex) => (
                                   <div className={`carousel-item ${imgIndex === 0 ? 'active' : ''}`} key={imgIndex}>
                                     <img className="d-block w-100" src={img} alt={`Slide ${imgIndex + 1}`} />
-                                                                    <button type="button"
-            onClick={(e) => toggleWishlist(item, e)}
-            style={{
-              background: 'none',
-              border: 'none',
-              position: 'absolute',
-              top: '10px',
-              right: '10px',
-              zIndex: 10, // optional: keeps button above image
-            }}
-          ></button>
+
                                   </div>
                                 ))}
                               </div>
@@ -199,6 +189,7 @@ const toggleWishlist = (item, e) => {
                             </div>
 
                             <div className="card-body">
+
                               {/* Optional rating */}
                               {item.rating && (
                                 <div className="rating mb-2">
@@ -213,6 +204,23 @@ const toggleWishlist = (item, e) => {
                                 <span className=" crdspan text-muted text-decoration-line-through ms-2">₹ {item?.originalPrice}</span>
                                 <span className=" crdspan text-danger ms-2">{item?.discount}</span></p>
                               </div>
+                   <button type="button"
+  onClick={(e) => toggleWishlist(item, e)}
+  style={{
+    background: 'none',
+    border: 'none',
+    position: 'absolute',
+    top: '10px',
+    right: '10px',
+    zIndex: 10, // optional: keeps button above image
+  }}
+>
+  {wishlistItems.some((wishlistItem) => wishlistItem.id === item.id) ? (
+    <FaHeart color="red" size={20} />
+  ) : (
+    <FaRegHeart color="grey" size={20} />
+  )}
+</button>
                               {/* Add to Cart button */}
                               {
                                 cartitems.find(Items=>Items.id===item.id)?(

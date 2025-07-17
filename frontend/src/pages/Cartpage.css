@@ -1,3 +1,7 @@
+
+.main-content4{
+  margin-top: 50px;
+}
 .cartpg {
     margin-top: 110px;
     padding: 20px;
@@ -12,11 +16,27 @@
   color: white;
   border-radius: 1%;
 }
-/* .cartbutton{
-  color: white;
-  border-radius: 1%; 
-} */
+
 .card-text{
   font-size: 12px;
   line-height: -30px;
+}
+.cartpg {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.card .buttons {
+  /* background-color: #f0f0f0; */
+  border: 1px solid #ddd;
+  font-weight: 600;
+}
+
+.card .buttons:hover {
+  background-color: orange;
+  color: white;
+}
+
+.card.crd-img {
+  border-radius: 8px;
 }

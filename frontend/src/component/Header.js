@@ -8,11 +8,12 @@ import { useSelector } from 'react-redux';
 
 const Header = () => {
 
-  const cartItems = useSelector((state) => state.cart.cartitems);
-  const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
-  const wishlistItems = useSelector((state) => state.wishlist.wishlistItems);
-  // const wishCount = wishlistItems.reduce((total, item) => total + item.quantity, 0);
-  const wishCount = wishlistItems.length;
+const cartItems = useSelector((state) => state.cart.cartitems || []);
+const cartCount = cartItems.reduce((total, item) => total + (item.quantity || 0), 0);
+
+const wishlistItems = useSelector((state) => state.wishlist.wishlistItems || []);
+const wishCount = wishlistItems.length;
+
 
 
   return (
@@ -27,7 +28,7 @@ const Header = () => {
     </section>
     {/* ===========first nav bar====== */}
     <section>
-    <nav className="navbar navbar-expand-lg navbar-light bg-light firstnavbar">
+    <nav className="navbar navbar-expand-lg navbar-light bg-light firstnavbar ">
       <div className="container-fluid">
         <Link className="navbar-brand" to=""><i className='bx bx-menu iconmenu'>
         
@@ -35,47 +36,68 @@ const Header = () => {
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div className="navbar-nav mx-auto">
-             <form className="d-flex txtwithicon">
-             <i className='bx bx-search boxsearch'>< input className="inputsearch me-2" type="search" placeholder="Search" aria-label="Search" /> 
-             </i>
-       
-             </form>
-             <ul  className="navbar-nav lm">
-              <li><Link to="/loginform" className='mycart'>
-                <i className='bx bx-user' ></i><br/><h6>Account</h6>
-                </Link>
-                </li>
-              <li><Link to="/wishlist" className="crt position-relative wishy"><i className='bx bx-heart' ></i><br/><h6>Wishlist</h6>
-              {wishCount > 0 && (
-  <span className="position-absolute  top-0  translate-middle badge  bg-dark px-1 py-0 "  style={{ fontSize: '0.6rem',color:'white' }} >
-    {wishCount}
-  </span>
-  )}
+<div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+  <div className="navbar-nav mx-auto align-items-center d-flex gap-3">
+
+    {/* Search Box with Icon */}
+    <form className="txtwithicon d-flex align-items-center">
+      <i className="bx bx-search"></i>
+      <input
+        className="inputsearch"
+        type="search"
+        placeholder="Search"
+        aria-label="Search"
+      />
+    </form>
+
+    {/* Nav Icons List */}
+    <ul className="navbar-nav lm d-flex align-items-center gap-3">
+
+      {/* Account Dropdown */}
+<li className="text-center">
+  <Link to="/login" className="nav-link crt">
+    <i className="bx bx-user fs-4"></i>
+    <h6 className="mb-0">Account</h6>
   </Link>
-               </li>
-              <li>
-               
-<Link to="/cartpage" className="mycart position-relative">
-  <div className="position-relative">
-    <i className="bx bx-cart"></i>
-    {cartCount > 0 && (
-      <span className="position-absolute top-0 translate-middle badge bg-dark px-1 py-0" style={{ fontSize: '0.6rem', color: 'white' }}>
-        {cartCount}
-      </span>
-    )}
+</li>
+
+
+      {/* Wishlist */}
+      <li className="text-center ms-2">
+        <Link to="/wishlist" className="crt position-relative d-inline-block">
+          <i className="bx bx-heart fs-4"></i>
+          {wishCount > 0 && (
+            <span className="position-absolute top-0 start-100 translate-middle badge bg-dark px-1 py-0" style={{ fontSize: '0.6rem', color: 'white' }}>
+              {wishCount}
+            </span>
+          )}
+          <h6>Wishlist</h6>
+        </Link>
+      </li>
+
+      {/* Cart */}
+      <li className="text-center ms-3">
+        <Link to="/cartpage" className="mycart position-relative d-inline-block">
+          <i className="bx bx-cart fs-4"></i>
+          {cartCount > 0 && (
+            <span className="position-absolute top-0 start-100 translate-middle badge bg-dark px-1 py-0" style={{ fontSize: '0.6rem', color: 'white' }}>
+              {cartCount}
+            </span>
+          )}
+          <h6>Cart</h6>
+        </Link>
+      </li>
+
+      {/* Track Order */}
+      <li className="text-center ms-3">
+        <i className="bx bx-search fs-4"></i>
+        <h6>Track Order</h6>
+      </li>
+
+    </ul>
   </div>
-  <h6>Cart</h6>
-</Link>
+</div>
 
-
-               </li>
-              <li><i className='bx bx-search'></i><br/><h6>Track Order</h6></li>
-
-            </ul> 
-          </div>
-        </div>
       </div>
 </nav>
     </section>
@@ -152,9 +174,9 @@ const Header = () => {
       
         </li> */}
         <li className="nav-item dropdown">
-        <a className="nav-link " href="#" id="hoverDropdown" role="button">
-          WATCHES
-        </a>
+        <Link className="nav-link " to="/myupload" id="hoverDropdown" role="button">
+         ADMIN
+        </Link>
       
         </li>
         <li className="nav-item dropdown">

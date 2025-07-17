@@ -4,8 +4,10 @@ body, html {
   margin: 0;
   padding: 0;
   height: 100%;
-  background-color: #f3f6fa;
+  background-color: #F5F5DC;
+   /* background: linear-gradient(135deg, #e0eafc, #cfdef3); */
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
 }
 
 /* Container takes full screen height and centers form */
@@ -24,20 +26,16 @@ body, html {
   max-width: 500px;
   background-color: #ffffff;
   border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); */
 }
 
-/* Inner padding */
-.upload5 {
-  /* padding: 50px; */
-}
 
 /* Form title */
-form h2 {
+form h5 {
   text-align: center;
-  font-size: 32px;
-  font-weight: 700;
-  color: #007bff;
+  font-size: 25px;
+  font-weight: 600;
+  color:black;
   margin-bottom: 40px;
 }
 
@@ -82,7 +80,7 @@ input:focus {
 }
 
 button[type="submit"] {
-  background-color: #007bff;
+  background-color:black;
   color: white;
   border: none;
   padding: 14px 48px;

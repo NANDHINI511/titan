@@ -1,6 +1,7 @@
 const express=require('express');
 const cors=require('cors');
-
+const jwt=require('jsonwebtoken');
+const  bcrypt=require('bcryptjs');
 const app=express();
 const port=7003;
 app.use(cors());
@@ -8,7 +9,10 @@ app.use(express.json());
 
 app.get("/gy",(req,res)=>{
     res.send("HI")
-})
+}) 
+
+const users=[];
+const secretKey='Paris143';
 
 
 const { MongoClient, ServerApiVersion,ObjectId } = require('mongodb');
@@ -29,7 +33,9 @@ async function run() {
     await client.connect();
     
 const watch=client.db("titan").collection("men");
-
+const womens=client.db("titan").collection("women");
+const smart=client.db("titan").collection("smartwatch");
+// men api
     app.post("/upload",async(req,res)=>{
         const data=req.body;
         const result=await watch.insertOne(data);
@@ -72,6 +78,96 @@ const watch=client.db("titan").collection("men");
         const result=await watch.deleteOne(filter);
         res.status(200).json({success:true , message:"data deleted successfully", result});
     })
+
+//women api
+    app.post("/uploadwomen",async(req,res)=>{
+        const data=req.body;
+        const result=await womens.insertOne(data);
+        res.send(result);
+    })
+   
+    app.get("/updatewomen",async(req,res)=>{
+        const wrist=womens.find();
+        const result=await wrist.toArray();
+        res.send(result);
+    })
+
+    app.get("/updatewomenbyid/:id",async(req,res)=>{
+      const id=req.params.id;
+      const filter={_id:new ObjectId(id)};
+      const result=await womens.findOne(filter);
+      res.send(result);
+    })
+   
+    app.patch("/allproductwomen/:id",async(req,res)=>{
+     
+        const id=req.params.id;
+        const updateWristdata=req.body;
+        const filter={_id:new ObjectId(id)};
+
+        const updateDoc={
+            $set:{
+                ...updateWristdata
+            },
+        }
+        const options ={upsert:true};
+        const result=await womens.updateOne(filter,updateDoc,options);
+        res.send(result);
+    })
+
+    app.delete('/deletewomen/:id',async(req,res)=>{
+        const id=req.params.id;
+        console.log(id)
+        const filter={_id:new ObjectId(id)};
+        const result=await watch.deleteOne(filter);
+        res.status(200).json({success:true , message:"data deleted successfully", result});
+    })
+
+//smartwatch api
+    app.post("/uploadsmart",async(req,res)=>{
+        const data=req.body;
+        const result=await smart.insertOne(data);
+        res.send(result);
+    })
+   
+    app.get("/updatesmart",async(req,res)=>{
+        const wrist=smart.find();
+        const result=await wrist.toArray();
+        res.send(result);
+    })
+
+    app.get("/updatesmartbyid/:id",async(req,res)=>{
+      const id=req.params.id;
+      const filter={_id:new ObjectId(id)};
+      const result=await smart.findOne(filter);
+      res.send(result);
+    })
+   
+    app.patch("/allproductsmart/:id",async(req,res)=>{
+     
+        const id=req.params.id;
+        const updateWristdata=req.body;
+        const filter={_id:new ObjectId(id)};
+
+        const updateDoc={
+            $set:{
+                ...updateWristdata
+            },
+        }
+        const options ={upsert:true};
+        const result=await smart.updateOne(filter,updateDoc,options);
+        res.send(result);
+    })
+
+    app.delete('/deletesmart/:id',async(req,res)=>{
+        const id=req.params.id;
+        console.log(id)
+        const filter={_id:new ObjectId(id)};
+        const result=await smart.deleteOne(filter);
+        res.status(200).json({success:true , message:"data deleted successfully", result});
+    })
+
+
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
@@ -80,7 +176,35 @@ const watch=client.db("titan").collection("men");
     // await client.close();
   }
 }
+
 run().catch(console.dir);
+// Register route
+app.post('/register',async(req,res)=>{
+    const {username,password}=req.body;
+    const hashedPassword= await bcrypt.hash(password,10);
+    users.push({username,password:hashedPassword});
+    res.sendStatus(201);
+    console.log("User registered Successfully")
+})
+
+// Login route
+app.post('/login',async(req,res)=>{
+    const {username,password}=req.body;
+    const user=users.find((us)=>us.username===username)
+    if(user){
+       const isValiduser=await bcrypt.compare(password,user.password,);
+       if(isValiduser){
+            const token=await jwt.sign({username},secretKey,{expiresIn:'1hr'})
+            res.json({ token });
+            console.log("login Successfully");
+       }else{
+            res.status(401).json({message:'Invalid Credential,since Password Does not match'})
+       }
+
+    }else{
+      res.status(401).json({message:'Invalid Credential,since User Not Found,SignUp to Login plz'})
+    }
+})
 
 app.listen(port,()=>{
     console.log(`connected to ${port}`)

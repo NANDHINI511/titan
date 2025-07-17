@@ -52,7 +52,7 @@ const Upload = () => {
   <div className="card upload6">
     <div className="card-body upload5">
       <form onSubmit={handleSubmit}>
-        <h2>UPLOAD</h2>
+        <h5>UPLOAD FOR MEN</h5>
 
         <div className="upload0">
           <label>TITLE</label>

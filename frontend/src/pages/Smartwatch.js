@@ -28,10 +28,10 @@ const Smartwatch = () => {
   return (
     <>
     <section>
-    <div className="container-fluid">
+    <div className="container-fluid main-content2">
     <div className="row smartwatch">
     <Accordion/>
-    <div class="col-lg-10 mt-5">
+    <div class="col-lg-10 mt-1">
         
         {/* ------ */}
     
@@ -63,7 +63,7 @@ const Smartwatch = () => {
     
             {/* ----many buttns---- */}
     <section>
-            <div className="container">
+            <div className="container ">
             <div className=" row categorybtlinks ">
             
             <div className="categorylinks col-lg-10 mt-1 ">

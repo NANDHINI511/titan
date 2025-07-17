@@ -8,7 +8,8 @@
     position: static;
     font-size: 14px;
     color: white;
-    z-index: 10;
+   z-index: 10000; /* or higher */
+  /* position: fixed; */
     top: 0%;
     left: 0%;
     position:fixed !important
@@ -28,10 +29,11 @@ animation: slideText 10s linear infinite;
                   /*====== first nav bar =====*/
 
   .firstnavbar{
-    position: fixed;
+    /* position: fixed; */
     height: 15vh;
     width: 100%;
-    z-index: 5;
+   z-index:  9998; /* must be higher than secondnav */
+  position: fixed;
     left: 0px;
     top: 5%;
     /* border: 2px solid red; */
@@ -43,46 +45,77 @@ animation: slideText 10s linear infinite;
     font-size: 30px;
     margin-left: 50px;
   }
-  .txtwithicon{
-    border:1px solid  whitesmoke;
-    background: whitesmoke;
-    }
- .txtwithicon i{
-    padding: 5px 0 0 5px;
-    color: gray;
-    position: relative;
-  }
-  .inputsearch {
-    border: transparent;
-    outline: none;
-    border: none;
-  }
-  .inputsearch {
-    background: whitesmoke;
-    border: none;
-    width: 600px;
-    padding: 15px;
-  }
-  
- .txtwithicon:hover{
-    border-color: orange;
- }
-  .lm{
-    margin-left: 50px;
-    color: gray; 
-  }
-  .lm i{   
-    font-size: 21px; 
-    margin: 0 20px 0 20px;  
-  } 
-  .lm h6{
-    font-size: 12px;
-    text-align: center;
-  }
-  .mycart{
-    text-decoration: none;
-    color: gray; 
-  }
+ 
+ /* Search Box Styling */
+.txtwithicon {
+  border: 1px solid whitesmoke;
+  /* border-radius: 25px; */
+  background: whitesmoke;
+  padding: 0 10px;
+  height: 40px; width: 500px;
+  transition: border-color 0.3s ease;
+}
+
+.txtwithicon:hover {
+  border-color: orange;
+}
+
+.txtwithicon i {
+  color: gray;
+  font-size: 18px;
+  padding-right: 8px;
+}
+.inputsearch {
+  /* border: 1px solid gray; */
+  padding-top: 10px; /* adjust as needed */
+  padding-bottom: 6px; /* optional for balance */
+  padding-left: 16px;
+  padding-right: 16px;
+  text-align: start; /* if you also want it centered horizontally */
+  background-color: whitesmoke;
+  border: none;
+  outline: none; font-size: 17px;
+ 
+  height: 20px;
+}
+
+.inputsearch::placeholder {
+  color: gray;
+}
+
+/* .inputsearch {padding-top: 10px;
+  background: transparent;
+  border: none;
+  outline: none;
+  width: 220px;
+  padding: 8px 0;
+  font-size: 14px;
+  color: #333;
+} */
+
+/* Icons & Links Styling */
+.lm {
+  margin-top: 10px;
+  color: gray;
+}
+
+.lm i {
+  font-size: 21px;
+  margin-bottom: 4px;
+}
+
+.lm h6 {
+  font-size: 12px;
+  margin: 0;
+  text-align: center;
+}
+
+.crt,
+.mycart {
+  text-decoration: none;
+  color: gray;
+}
+
             /* ======second nav bar========= */
 .secondnav {
  
@@ -90,7 +123,8 @@ animation: slideText 10s linear infinite;
   font-size: 14px;
   top:120px;
   left: 0%;
-  z-index: 1;
+    z-index: 999;
+  position: fixed;
   height: fit-content;
   
 }
@@ -186,4 +220,37 @@ animation: slideText 10s linear infinite;
 .wishy{
   text-decoration: none;
   color: gray;
+}
+.account-dropdown-menu {
+  position: absolute;
+  top: 60px; /* Adjust based on your layout */
+  left: 0;
+  background-color: white;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  z-index: 9999 !important;  /* Force it above everything */
+  min-width: 140px;
+  padding: 5px 0;
+  display: none;
+}
+
+.nav-item.dropdown:hover > .account-dropdown-menu {
+  display: block;
+}
+
+
+.nav-item.dropdown:hover > .account-dropdown-menu {
+  display: block;
+}
+
+
+.account-dropdown-menu .dropdown-item {
+  font-size: 13px;
+  padding: 6px 15px;
+  color: #333;
+  transition: background 0.2s ease;
+}
+
+.account-dropdown-menu .dropdown-item:hover {
+  background-color: #f2f2f2;
+  color: black;
 }

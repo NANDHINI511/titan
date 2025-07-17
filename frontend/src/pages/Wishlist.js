@@ -2,6 +2,9 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeFromWishlist } from '../redux/Wishslice';
 import { FaHeart } from 'react-icons/fa';
+import { addTocart } from '../redux/Cartslice';
+import './wishlist.css';
+
 
 const Wishlist = () => {
   const wishlistItems = useSelector((state) => state.wishlist.wishlistItems);
@@ -11,6 +14,10 @@ const Wishlist = () => {
     dispatch(removeFromWishlist(item));
   };
 
+const moveToCart = (item) => {
+    dispatch(addTocart(item)); // ✅ Add to cart
+    dispatch(removeFromWishlist(item)); // ✅ Remove from wishlist
+  };
   return (
     <section>
       <div className="container">
@@ -44,12 +51,15 @@ const Wishlist = () => {
         </span>
       )}
     </p>
-    <button
-      className="btn btn-outline-danger w-100"
-      onClick={() => removeWishlistItem(item)}
-    >
-      <FaHeart /> Remove from Wishlist
-    </button>
+<div className="d-flex justify-content-between gap-2 mt-3">
+  <button className="btn btn-outline-dark w-50 movbuton" onClick={() => moveToCart(item)}>
+   Move to Cart
+  </button>
+  <button className="btn btn-outline-danger movbuton w-50" onClick={() => removeWishlistItem(item)}>
+     Remove
+  </button>
+</div>
+  
   </div>
 </div>
 
