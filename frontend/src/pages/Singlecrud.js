@@ -1,139 +1,144 @@
 import React, { useEffect, useState } from 'react';
 import { Table, Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+import { FiEdit } from "react-icons/fi";
+import './singlecrud.css';
 
 function Fetchfile() {
-  const [users, setUsers] = useState([]);
-  
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-
+  const [products, setProducts] = useState([]);
+  const [title, setTitle] = useState('');
+  const [price, setPrice] = useState('');
+  const [image, setImage] = useState('');
+  const [category, setCategory] = useState('');
   const [editMode, setEditMode] = useState(false);
-  const [editUserId, setEditUserId] = useState(null);
+  const [editProductId, setEditProductId] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
 
   const toggleModal = () => setModalOpen(!modalOpen);
 
   useEffect(() => {
-    fetchUsers();
-  }, []); 
+    fetchProducts();
+  }, []);
 
-  const fetchUsers = () => {
-    axios.get('https://jsonplaceholder.typicode.com/users')
-      .then(res => setUsers(res.data))
+  const fetchProducts = () => {
+    axios.get('http://localhost:7003/products')
+      .then(res => setProducts(res.data))
       .catch(err => console.error(err));
   };
 
-  const handleSaveUser = () => {
-    if (!username || !email || !phone) {
-      alert('Please enter all fields.');
+  const handleSaveProduct = () => {
+    if (!title || !price || !image || !category) {
+      alert('Please fill all fields');
       return;
     }
-    if (users.some(user => user.email === email && user.id !== editUserId)) {
-      alert('Email already exists.');
-      return;
-    }
+
     if (editMode) {
-      updateUser(editUserId);
+      updateProduct(editProductId);
     } else {
-      createUser();
+      createProduct();
     }
+
     toggleModal();
   };
 
-  const createUser = () => {
-    const userData = { name: username, email: email, phone: phone };
-    axios.post("https://jsonplaceholder.typicode.com/users", userData)
+  const createProduct = () => {
+    const newProduct = { title, price, image, category };
+    axios.post('http://localhost:7003/products', newProduct)
       .then(res => {
-        setUsers([...users, res.data]);
+        setProducts([...products, res.data]);
         resetForm();
       })
       .catch(err => console.error(err));
   };
 
-  const updateUser = (userId) => {
-    axios.put(`https://jsonplaceholder.typicode.com/users/${userId}`, { name: username, email: email, phone: phone })
-      .then(res => {
-        const updatedUsers = users.map(user => (user.id === userId ? res.data : user));
-        setUsers(updatedUsers);
-        resetForm();
-      })
-      .catch(err => console.error(err));
+  const updateProduct = (productId) => {
+    axios.put(`http://localhost:7003/products/${productId}`, {
+      title, price, image, category
+    }).then(res => {
+      const updatedProducts = products.map(prod => (prod._id === productId ? res.data : prod));
+      setProducts(updatedProducts);
+      resetForm();
+    }).catch(err => console.error(err));
   };
 
-  const deleteUser = (userId) => {
-    axios.delete(`https://jsonplaceholder.typicode.com/users/${userId}`)
+  const deleteProduct = (productId) => {
+    axios.delete(`http://localhost:7003/products/${productId}`)
       .then(() => {
-        const updatedUsers = users.filter(user => user.id !== userId);
-        setUsers(updatedUsers);
+        const updatedProducts = products.filter(prod => prod._id !== productId);
+        setProducts(updatedProducts);
       })
       .catch(err => console.error(err));
   };
 
-  const handleEditUser = (userId) => {
-
-    const selectedUser = users.find(user => user.id === userId);
-    if (selectedUser) {
-      setUsername(selectedUser.name);
-      setEmail(selectedUser.email);
-      setPhone(selectedUser.phone);
+  const handleEditProduct = (productId) => {
+    const selectedProduct = products.find(prod => prod._id === productId);
+    if (selectedProduct) {
+      setTitle(selectedProduct.title);
+      setPrice(selectedProduct.price);
+      setImage(selectedProduct.image);
+      setCategory(selectedProduct.category);
       setEditMode(true);
-      setEditUserId(userId);
+      setEditProductId(productId);
       toggleModal();
     }
   };
 
   const resetForm = () => {
-    setUsername('');
-    setEmail('');
-    setPhone('');
+    setTitle('');
+    setPrice('');
+    setImage('');
+    setCategory('');
     setEditMode(false);
-    setEditUserId(null);
+    setEditProductId(null);
   };
 
   return (
-    <div>
-      <Table>
+    <div className="container  mt-5">
+      <h3>Product CRUD</h3>
+      <Button color="primary" className="cont mb-3 mt-5" onClick={toggleModal}>Add Product</Button>
+
+      <Table striped bordered>
         <thead>
           <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Actions</th>
+            <th>TITLE</th>
+            <th>IMAGE</th>
+            <th>DES</th>
+            <th>PRICE</th>
+            <th>QUANTITY</th>
+            <th>ACTIONS</th>
           </tr>
         </thead>
-        <tbody>
-          {users.map(user => (
-            <tr key={user.id}>
-              <td>{user.id}</td>
-              <td>{user.name}</td>
-              <td>{user.email}</td>
-              <td>{user.phone}</td>
+ <tbody>
+          {products.map((watch) => (
+            <tr key={watch._id}>
+              <td>{watch.title}</td>
               <td>
-                <Button color="warning" onClick={() => handleEditUser(user.id)}>Edit</Button>
-                <Button color="danger" onClick={() => deleteUser(user.id)}>Delete</Button>
+                <img src={watch.image} alt={watch.title} width="60" height="60" />
+              </td>
+              <td>{watch.des}</td>
+              <td>{watch.price}</td>
+              <td>{watch.quantity}</td>
+              <td>
+                <button className="btn btn-danger me-2" onClick={() => deleteProduct(watch._id)}>Delete</button>
+                <Link to={`/edit/${watch._id}`}><button><FiEdit /></button></Link> 
               </td>
             </tr>
           ))}
         </tbody>
       </Table>
 
-      <Button color="primary" onClick={toggleModal}>Add User</Button>
-
       <Modal isOpen={modalOpen} toggle={toggleModal}>
-        <ModalHeader toggle={toggleModal}>{editMode ? 'Edit User' : 'Add User'}</ModalHeader>
+        <ModalHeader toggle={toggleModal}>{editMode ? 'Edit Product' : 'Add Product'}</ModalHeader>
         <ModalBody>
-          <div>
-            <input type='text' value={username} onChange={(e) => setUsername(e.target.value)} placeholder='Name' />
-            <input type='email' value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Email' />
-            <input type='text' value={phone} onChange={(e) => setPhone(e.target.value)} placeholder='Phone' />
-          </div>
+          <input className="form-control mb-2" type='text' value={title} onChange={(e) => setTitle(e.target.value)} placeholder='Product Title' />
+          <input className="form-control mb-2" type='text' value={price} onChange={(e) => setPrice(e.target.value)} placeholder='Price' />
+          <input className="form-control mb-2" type='text' value={image} onChange={(e) => setImage(e.target.value)} placeholder='Image URL' />
+          <input className="form-control mb-2" type='text' value={category} onChange={(e) => setCategory(e.target.value)} placeholder='Category' />
         </ModalBody>
         <ModalFooter>
           <Button color="secondary" onClick={() => { toggleModal(); resetForm(); }}>Cancel</Button>
-          <Button color="primary" onClick={handleSaveUser}>{editMode ? 'Update' : 'Save'}</Button>
+          <Button color="primary" onClick={handleSaveProduct}>{editMode ? 'Update' : 'Save'}</Button>
         </ModalFooter>
       </Modal>
     </div>

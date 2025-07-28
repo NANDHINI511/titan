@@ -9,12 +9,15 @@ import './Update.css'
 const Update = () => {
 
   const[ProductItems,setProductsItems]=useState([]);
- useEffect(()=>{
-      fetch(`http://localhost:7003/update`)
-      .then((res)=>res.json())
-      .then((data)=>
-          setProductsItems(data))
-  },[])
+useEffect(() => {
+  fetch(`http://localhost:7003/update`)
+    .then((res) => res.json())
+    .then((data) => {
+      console.log("Fetched data:", data); // 👈 LOG here
+      setProductsItems(data);
+    })
+    .catch((err) => console.error("Fetch error:", err));
+}, []);
   
    const DeleteItems=(id)=>{
     fetch(`http://localhost:7003/deletewatch/${id}`,{
@@ -30,7 +33,7 @@ const Update = () => {
   return (
 //  <div className="update-page">
   <div className="card table2 mb-5">
-    <div className="card-body">
+    <div className="card-body mt-5">
       <table className="table1 ">
         <thead>
           <tr>

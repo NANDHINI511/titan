@@ -35,6 +35,40 @@ async function run() {
 const watch=client.db("titan").collection("men");
 const womens=client.db("titan").collection("women");
 const smart=client.db("titan").collection("smartwatch");
+// single crud
+// For creating a product
+app.post("/products", async (req, res) => {
+  const data = req.body;
+  await watch.insertOne(data);
+  res.send(data);
+});
+
+// For getting all products
+app.get("/products", async (req, res) => {
+  const result = await watch.find().toArray();
+  res.send(result);
+});
+
+// For updating a product
+app.put("/products/:id", async (req, res) => {
+  const id = req.params.id;
+  const updatedData = req.body;
+  await watch.updateOne({ _id: new ObjectId(id) }, { $set: updatedData });
+  res.send(updatedData);
+});
+
+// For deleting a product
+app.delete("/products/:id", async (req, res) => {
+  const id = req.params.id;
+  await watch.deleteOne({ _id: new ObjectId(id) });
+  res.send({ message: "Deleted" });
+});
+
+
+
+
+
+
 // men api
     app.post("/upload",async(req,res)=>{
         const data=req.body;

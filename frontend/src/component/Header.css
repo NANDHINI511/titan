@@ -121,9 +121,9 @@ animation: slideText 10s linear infinite;
  
   width: 100%;
   font-size: 14px;
-  top:120px;
+  top:105px;
   left: 0%;
-    z-index: 999;
+    z-index: 499;
   position: fixed;
   height: fit-content;
   

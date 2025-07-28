@@ -216,7 +216,7 @@ export const watchearray = [
     {
       id: 36,
       title: "Titan Men's Watch",
-      description: "Classy  strap with a modern dial.",
+      description: "Classy  strap with cozzy a modern dial.",
       price: 3295,
       originalPrice: 4550,
       rating: 4.6,
@@ -328,7 +328,7 @@ export const watchearray = [
     {
         id: 43,
         title: "Titan Men's Watch",
-        description: "Quartz Analog Silver Dial Silver",
+        description: "Quartz Analog Watch with Silver Dial ",
         price: 4995,
         originalPrice: 5550,
         discount: "10% off",
@@ -342,7 +342,7 @@ export const watchearray = [
     {
         id: 43,
         title: "Titan Men's Watch",
-        description: "Stylish brown leather strap with a modern dial.",
+        description: "Brown leather strap with a modern dial.",
         price: 4995,
         originalPrice: 5550,
         discount: "10% off",
